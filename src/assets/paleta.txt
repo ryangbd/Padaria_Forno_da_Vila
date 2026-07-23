@@ -1,0 +1,8 @@
+Paleta principal
+Cor	Hex	Uso
+🤍 Off White	rgb(248, 242, 229)	Fundo principal
+🌾 Creme	#E8DCC6	Cards e seções
+🟤 Marrom	#6B4F3A	Títulos
+☕ Marrom Escuro	#4A3426	Texto principal
+🥖 Dourado Trigo	#C89B3C	Botões e detalhes
+🌿 Verde Sálvia	#8A9A7B	Destaques sutis

@@ -1,9 +1,27 @@
-.Header{
+.Header {
+    box-sizing: border-box;
+    position: relative;
     display: flex;
     width: 100vw;
-    height: 40vh;
-    color:#f8f8f8;
-    font-size: 3rem;
-    background-repeat: no-repeat;
-    background-size: cover;
+    height: 100vh;
+    font-size: 3.5em;
+    font-weight: 600;
+    letter-spacing: .18rem;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 1em;
+    color: #6B4F3A;
+}
+
+.Header svg{
+    position: relative;
+    top:0;
+    left: 0;
+    width: 20em;
+    height: auto;
+}
+.Header svg path{
+    fill:#8A9A7B !important;
 }
