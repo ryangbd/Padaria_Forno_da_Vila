@@ -12,7 +12,7 @@
     align-items: center;
     overflow: hidden;
     padding:1em;
-    color: #6B4F3A;
+    color: #5d4431;
 }
 
 .Header svg{
@@ -23,5 +23,5 @@
     height: auto;
 }
 .Header svg path{
-    fill:#8A9A7B !important;
+    fill:#657a51 !important;
 }
