@@ -34,15 +34,16 @@
     margin-top: 2em;
     width: fit-content;
     color: white;
-    font-size: 1em;
+    font-size: 1.1em;
     padding: 0.75em 1.5em;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .btn-cardapio:hover {
-    background-color: #a3541f;
+    background-color: #e2712b;
     transform: translateY(-2px);
+    box-shadow: #e2712b 1px 1px 8px;
 }
 
 .btn-cardapio:active {

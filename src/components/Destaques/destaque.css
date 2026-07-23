@@ -1,0 +1,17 @@
+.destaques{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    font-size: 1.3em;
+    width: auto;
+    height: fit-content;
+    padding: 0;
+}
+.card-section{
+    width: 90%;
+    height: fit-content;
+    display: flex;
+    gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
+}
