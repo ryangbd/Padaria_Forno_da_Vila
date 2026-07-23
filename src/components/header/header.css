@@ -1,0 +1,9 @@
+.Header{
+    display: flex;
+    width: 100vw;
+    height: 40vh;
+    color:#f8f8f8;
+    font-size: 3rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
