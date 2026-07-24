@@ -11,7 +11,9 @@ import cafeEspecialImg from "../../assets/images/cafe.webp"
 function Destaques(){
     return(
         <div className="box destaques">
+            <div className="titlebox">
             <span>PRODUTOS EM DESTAQUE</span>
+            </div>
             <div className="card-section">
                 <Card
                     imagem={paoFrancesImg}

@@ -8,10 +8,23 @@
     padding: 0;
 }
 .card-section{
-    width: 90%;
+    width: 60%;
     height: fit-content;
     display: flex;
     gap: 2em;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.titlebox{
+    background-color: #fbf6ee;
+    width: 80%;
+    height: auto;
+    padding: 2em 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    box-shadow: #0000002f 1px 3px 3px;
 }
