@@ -25,7 +25,7 @@ function Sobre(){
                         <li>Atendimento acolhedor e familiar</li>
                     </ul>
 
-                    <button className="sobre-btn">Conheça nosso cardápio</button>
+                    <button className="sobre-btn">Realizar encomenda</button>
                 </div>
             </div>
         </div>
