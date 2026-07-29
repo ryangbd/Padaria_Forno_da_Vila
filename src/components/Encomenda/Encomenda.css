@@ -1,3 +1,95 @@
-.encomendabox{
-    background-color: #fbf6ee8f;
+.encomendabox {
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background-color: #fdf6ec;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(92, 64, 51, 0.12);
+}
+
+.formEncomenda {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.formEncomenda label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #5c4033;
+    margin-top: 1rem;
+}
+
+.formEncomenda input,
+.formEncomenda select {
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #d9c7b8;
+    border-radius: 8px;
+    background-color: #fffdf9;
+    font-size: 1rem;
+    color: #3e2c23;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.formEncomenda input:focus,
+.formEncomenda select:focus {
+    border-color: #c17f45;
+    box-shadow: 0 0 0 3px rgba(193, 127, 69, 0.15);
+}
+
+.formEncomenda input::placeholder {
+    color: #a89383;
+}
+
+.seletor-quantidade {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.seletor-quantidade button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background-color: #c17f45;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.seletor-quantidade button:hover {
+    background-color: #a8672f;
+}
+
+.seletor-quantidade button:active {
+    transform: scale(0.92);
+}
+
+.seletor-quantidade span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #3e2c23;
+    min-width: 24px;
+    text-align: center;
+}
+
+.formEncomenda button[type="submit"] {
+    margin-top: 1.5rem;
+    padding: 0.9rem;
+    background-color: #5c4033;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.formEncomenda button[type="submit"]:hover {
+    background-color: #43302a;
 }
