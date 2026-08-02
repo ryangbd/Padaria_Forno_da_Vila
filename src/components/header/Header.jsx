@@ -1,12 +1,26 @@
 import './header.css'
-import trigoSvg from "../../assets/icons/wheat-barley-svgrepo-com.svg"
 
 function Header(){
     return(
         <div className="Header">
-            <h1>FORNO DA VILA</h1>
-  
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none"><path d="M 128 192 C 92.654 192 64 220.654 64 256 L 0 256 C 0 185.308 57.308 128 128 128 Z M 256 128 C 256 198.692 198.692 256 128 256 L 128 192 C 163.346 192 192 163.346 192 128 Z M 128 64 C 92.654 64 64 92.654 64 128 L 0 128 C 0 57.308 57.308 0 128 0 Z M 256 0 C 256 70.692 198.692 128 128 128 L 128 64 C 163.346 64 192 35.346 192 0 Z" fill="rgb(84, 84, 84)"></path></svg>
+            <div className="Header-content">
+                <span className="Header-eyebrow">Padaria artesanal</span>
+
+                <div className="Header-title-wrap">
+                    <svg className="Header-score" viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 35 L45 5" stroke="#657a51" strokeWidth="4" strokeLinecap="round"/>
+                        <path d="M40 35 L75 5" stroke="#657a51" strokeWidth="4" strokeLinecap="round"/>
+                        <path d="M70 35 L105 5" stroke="#657a51" strokeWidth="4" strokeLinecap="round"/>
+                    </svg>
+                    <h1>Forno da Vila</h1>
+                </div>
+
+                <p className="Header-tagline">Pão de forno, todo santo dia</p>
+            </div>
+
+            <div className="Header-image">
+                <img src="../src/assets/images/Fachada.webp" alt="Fachada da padaria Forno da Vila" />
+            </div>
         </div>
     )
 }

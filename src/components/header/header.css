@@ -1,27 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Work+Sans:wght@400;500;600&display=swap');
+
 .Header {
     box-sizing: border-box;
     position: relative;
-    display: flex;
     width: 99vw;
     height: 100vh;
-    font-size: 3.5em;
-    font-weight: 600;
-    letter-spacing: .18rem;
-    text-transform: uppercase;
-    justify-content: center;
-    align-items: center;
+    background: #F3E9D4;
     overflow: hidden;
-    padding:1em;
-    color: #5d4431;
+    display: flex;
+    align-items: stretch;
 }
 
-.Header svg{
+.Header-content {
     position: relative;
-    top:0;
-    left: 0;
-    width: 20em;
-    height: auto;
+    z-index: 1;
+    flex: 0 0 44%;
+    max-width: 34em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4em;
 }
-.Header svg path{
-    fill:#657a51 !important;
+
+.Header-image {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3em 0 0 3em;
+    margin: 2.5em 2.5em 2.5em 0;
+}
+
+.Header-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.Header-eyebrow {
+    display: block;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #657a51;
+    margin-bottom: 1em;
+}
+
+.Header-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 0.6em;
+}
+
+.Header-score {
+    width: 3em;
+    height: 1em;
+    flex-shrink: 0;
+}
+
+.Header h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 4.5rem;
+    font-weight: 600;
+    line-height: 1;
+    color: #5d4431;
+    margin: 0;
+}
+
+.Header-tagline {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.2rem;
+    color: #5d4431;
+    margin: 0;
 }
