@@ -47,6 +47,7 @@ function Encomenda(){
                                 <input type="number" min="0" value={quantidade} onChange={(e) => setQuantidade(Math.max(1, Number(e.target.value)))}/>
                                 <button type="button" onClick={adicionarAoCarrinho}>Adicionar ao carrinho</button>
                             </div>
+                                <pre>{JSON.stringify(carrinho, null, 2)}</pre>
                         </div>
 
 
@@ -65,7 +66,7 @@ function Encomenda(){
                     <span className="titulo-comanda">COMANDA</span>
                     <div className="comandainfo">
                         <div className="linha-comanda"><p>Cliente</p>{form.nome || "---"}</div>
-                        <div className="linha-comanda"><p>Produto</p><p></p></div>
+                        <div className="linha-comanda"><p>Produtos</p>{carrinho.map((p => <span key={p.id}>{p.produto.nome}</span>))}</div>
                         <div className="linha-comanda"><p>Quantidade</p>{form.valor || "---"}</div>
                         <div className="linha-comanda"><p>Retirada</p><p>{form.dataRetirada || "---"}</p></div>
                         <div className="barrinha"></div>
@@ -84,3 +85,4 @@ function Encomenda(){
 export default Encomenda
 
 //only place to hide 
+//southern star
