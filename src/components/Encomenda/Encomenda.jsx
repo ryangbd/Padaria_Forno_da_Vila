@@ -1,25 +1,19 @@
 import { useState } from "react"
 import "./Encomenda.css"
-
-const produtos = [
-    {id:1,nome:"Pão Francês",preço:0.80},
-    {id:2,nome:"Croissant Artesanal",preço:6.50},
-    {id:3,nome:"Pão Italiano", preço:8.00},
-    {id:4,nome:"Sonho",preço:5.00},
-    {id:5,nome:"Bolo de Cenoura",preço:7.50},
-    {id:6,nome:"Café Especial",preço:5.00}
-]
-
+import produtos from "../../data/Produtos/Produtos.jsx"
 function Encomenda(){
     const [form, setForm] = useState({nome:"", telefone:"", produtoId:"", dataRetirada:"", obs:""})
     const [quantidade, setQuantidade] = useState(1)
-
+    const [carrinho, setCarrinho] = useState([])
+    
     function handleChange(e){
         setForm({...form, [e.target.name]: e.target.value})
     }
-
-    const produtoSelecionado = produtos.find(p => p.id === Number(form.produtoId))
-    const total = produtoSelecionado ? produtoSelecionado.preço * quantidade : 0
+    function adicionarAoCarrinho(){
+        const produto = produtos.find(p => p.id === Number(form.produtoId))
+        const novoItem = {produto, quantidade}
+        setCarrinho([...carrinho, novoItem])
+    }
 
     return(
         <div className="encomenda-page">
@@ -50,8 +44,8 @@ function Encomenda(){
 
                             <div className="campo-qtd">
                                 <label>Qtd.</label>
-                                <input type="number" min="0" value={quantidade} onChange={(e) => setQuantidade(Math.max(1, Number(e.target.value)))}
-/>
+                                <input type="number" min="0" value={quantidade} onChange={(e) => setQuantidade(Math.max(1, Number(e.target.value)))}/>
+                                <button type="button" onClick={adicionarAoCarrinho}>Adicionar ao carrinho</button>
                             </div>
                         </div>
 
@@ -70,14 +64,14 @@ function Encomenda(){
                     <span className="selo">Forno da Vila</span>
                     <span className="titulo-comanda">COMANDA</span>
                     <div className="comandainfo">
-                        <div className="linha-comanda"><p>Cliente</p><p>{form.nome || "—"}</p></div>
-                        <div className="linha-comanda"><p>Produto</p><p>{produtoSelecionado ? produtoSelecionado.nome : "—"}</p></div>
-                        <div className="linha-comanda"><p>Quantidade</p><p>{quantidade}</p></div>
-                        <div className="linha-comanda"><p>Retirada</p><p>{form.dataRetirada || "—"}</p></div>
+                        <div className="linha-comanda"><p>Cliente</p>{form.nome || "---"}</div>
+                        <div className="linha-comanda"><p>Produto</p><p></p></div>
+                        <div className="linha-comanda"><p>Quantidade</p>{form.valor || "---"}</div>
+                        <div className="linha-comanda"><p>Retirada</p><p>{form.dataRetirada || "---"}</p></div>
                         <div className="barrinha"></div>
                         <div className="linha-comanda total">
                             <span>Total</span>
-                            <span>R$ {total.toFixed(2)}</span>
+                            <span>R$</span>
                         </div>
                     </div>
                 </div>
@@ -88,3 +82,5 @@ function Encomenda(){
 }
 
 export default Encomenda
+
+//only place to hide 
