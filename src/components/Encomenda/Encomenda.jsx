@@ -16,7 +16,9 @@ function Encomenda(){
         const novoItem = {produto, quantidade}
         setCarrinho([...carrinho, novoItem])
     }
-
+    function excluirItem(index){
+        setCarrinho(carrinho.filter((item, i) => i!==index))
+    }
     return(
         <div className="encomenda-page">
 
@@ -68,7 +70,10 @@ function Encomenda(){
                     <span className="titulo-comanda">COMANDA</span>
                     <div className="comandainfo">
                         <div className="linha-comanda"><p>Cliente</p>{form.nome || "---"}</div>
-                        <div className="linha-comanda"><p>Produtos</p>{carrinho.map((p => <span key={p.id}>{p.produto.nome}</span>))}</div>
+                        <div className="linha-comanda"><p>Produtos</p>{carrinho.map((p => <span key={p.produto.id}>{p.produto.nome}</span>))}
+                       {carrinho.map((p, index) =>(
+                        <button key={index} type="button" onClick={() => excluirItem(index)}>Excluir</button>))}
+                        </div>
                         <div className="linha-comanda"><p>Quantidade</p>{form.valor || "---"}</div>
                         <div className="linha-comanda"><p>Retirada</p><p>{form.dataRetirada || "---"}</p></div>
                         <div className="barrinha"></div>
