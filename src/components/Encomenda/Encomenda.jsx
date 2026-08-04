@@ -5,6 +5,8 @@ function Encomenda(){
     const [form, setForm] = useState({nome:"", telefone:"", produtoId:"", dataRetirada:"", obs:""})
     const [quantidade, setQuantidade] = useState(1)
     const [carrinho, setCarrinho] = useState([])
+    const valorTotal = carrinho.reduce((valAnt,pAtual) => valAnt + pAtual.produto.preço*pAtual.quantidade,0)
+    const valorTotalFormatado = valorTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
     
     function handleChange(e){
         setForm({...form, [e.target.name]: e.target.value})
@@ -47,7 +49,7 @@ function Encomenda(){
                                 <input type="number" min="0" value={quantidade} onChange={(e) => setQuantidade(Math.max(1, Number(e.target.value)))}/>
                                 <button type="button" onClick={adicionarAoCarrinho}>Adicionar ao carrinho</button>
                             </div>
-                                <pre>{JSON.stringify(carrinho, null, 2)}</pre>
+                           {/*<pre>{JSON.stringify(carrinho, null, 2)}</pre>*/}
                         </div>
 
 
@@ -72,7 +74,7 @@ function Encomenda(){
                         <div className="barrinha"></div>
                         <div className="linha-comanda total">
                             <span>Total</span>
-                            <span>R$</span>
+                            <span>R${valorTotalFormatado}</span>
                         </div>
                     </div>
                 </div>
