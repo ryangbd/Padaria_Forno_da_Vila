@@ -8,6 +8,7 @@ function Encomenda(){
     const [carrinho, setCarrinho] = useState([])
     const valorTotal = carrinho.reduce((valAnt,pAtual) => valAnt + pAtual.produto.preço*pAtual.quantidade,0)
     const valorTotalFormatado = valorTotal.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+    const [mostrarCarrinho, setMostrarCarrinho] = useState(false)
     
     function handleChange(e){
         setForm({...form, [e.target.name]: e.target.value})
@@ -71,10 +72,17 @@ function Encomenda(){
                     <span className="titulo-comanda">COMANDA</span>
                     <div className="comandainfo">
                         <div className="linha-comanda"><p>Cliente</p>{form.nome || "---"}</div>
-                        <div className="linha-comanda"><p>Produtos</p>{carrinho.map((p => <span key={p.produto.id}>{p.produto.nome}</span>))}
-                       {carrinho.map((p, index) =>(
-                        <button key={index} type="button" onClick={() => excluirItem(index)}>Excluir</button>))}
+                        <div className="linha-comanda produtos-linha">
+                            <p>Produtos</p>
+                            <button type="button" className="btn-visualizar-carrinho" onClick={() => setMostrarCarrinho(!mostrarCarrinho)}>
+                                {mostrarCarrinho ? "Ocultar" : "Visualizar carrinho"}
+                            </button>
                         </div>
+                        {mostrarCarrinho && (
+                            <div className="lista-carrinho">
+                                <ItemCarrinho carrinho={carrinho} onExcluir={excluirItem} />
+                            </div>
+                        )}
                         <div className="linha-comanda"><p>Quantidade</p>{form.valor || "---"}</div>
                         <div className="linha-comanda"><p>Retirada</p><p>{form.dataRetirada || "---"}</p></div>
                         <div className="barrinha"></div>
@@ -86,7 +94,6 @@ function Encomenda(){
                 </div>
             </div>
         </div>
-        <ItemCarrinho carrinho={carrinho} onExcluir={excluirItem} />
                                     </div>
     )
 }

@@ -1,0 +1,70 @@
+.produtos-linha {
+    align-items: center;
+    position: relative;
+}
+
+.btn-visualizar-carrinho {
+    background: none;
+    border: 1px solid #c17f45;
+    color: #c17f45;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-visualizar-carrinho:hover {
+    background-color: #c17f45;
+    color: #fff;
+}
+
+.lista-carrinho {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 0.5rem;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.item-carrinho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid #e5d5c3;
+}
+
+.item-carrinho:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.item-carrinho span:first-child {
+    color: #3e2c23;
+    font-weight: 500;
+}
+
+.item-carrinho span:last-child {
+    color: #9c8a7a;
+}
+
+.item-carrinho button {
+    background: none;
+    border: none;
+    color: #b3543a;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0;
+}
+
+.item-carrinho button:hover {
+    text-decoration: underline;
+}

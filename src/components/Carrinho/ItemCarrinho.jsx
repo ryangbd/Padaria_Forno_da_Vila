@@ -1,3 +1,4 @@
+import '../Carrinho/ItemCarrinho/ItemCarrinho.css'
 function ItemCarrinho({ carrinho, onExcluir }) {
     const itensAgrupados = Object.values(
         carrinho.reduce((acc, item) => {
