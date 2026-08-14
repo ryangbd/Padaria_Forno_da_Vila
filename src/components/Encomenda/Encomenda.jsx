@@ -74,15 +74,10 @@ function Encomenda(){
                         <div className="linha-comanda"><p>Cliente</p>{form.nome || "---"}</div>
                         <div className="linha-comanda produtos-linha">
                             <p>Produtos</p>
-                            <button type="button" className="btn-visualizar-carrinho" onClick={() => setMostrarCarrinho(!mostrarCarrinho)}>
-                                {mostrarCarrinho ? "Ocultar" : "Visualizar carrinho"}
+                            <button type="button" className="btn-visualizar-carrinho" onClick={() => setMostrarCarrinho(true)}>
+                                Visualizar carrinho
                             </button>
                         </div>
-                        {mostrarCarrinho && (
-                            <div className="lista-carrinho">
-                                <ItemCarrinho carrinho={carrinho} onExcluir={excluirItem} />
-                            </div>
-                        )}
                         <div className="linha-comanda"><p>Quantidade</p>{form.valor || "---"}</div>
                         <div className="linha-comanda"><p>Retirada</p><p>{form.dataRetirada || "---"}</p></div>
                         <div className="barrinha"></div>
@@ -94,7 +89,19 @@ function Encomenda(){
                 </div>
             </div>
         </div>
-                                    </div>
+
+        {mostrarCarrinho && (
+            <div className="overlay-carrinho" onClick={() => setMostrarCarrinho(false)}>
+                <div className="modal-carrinho" onClick={(e) => e.stopPropagation()}>
+                    <div className="modal-carrinho-header">
+                        <span>Seu carrinho</span>
+                        <button type="button" onClick={() => setMostrarCarrinho(false)}>X</button>
+                    </div>
+                    <ItemCarrinho carrinho={carrinho} onExcluir={excluirItem} />
+                </div>
+            </div>
+        )}
+        </div>
     )
 }
 
