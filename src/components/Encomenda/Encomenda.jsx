@@ -1,6 +1,7 @@
 import { useState } from "react"
 import "./Encomenda.css"
 import produtos from "../../data/Produtos/Produtos.jsx"
+import ItemCarrinho from "../Carrinho/itemCarrinho.jsx"
 function Encomenda(){
     const [form, setForm] = useState({nome:"", telefone:"", produtoId:"", dataRetirada:"", obs:""})
     const [quantidade, setQuantidade] = useState(1)
@@ -16,8 +17,8 @@ function Encomenda(){
         const novoItem = {produto, quantidade}
         setCarrinho([...carrinho, novoItem])
     }
-    function excluirItem(index){
-        setCarrinho(carrinho.filter((item, i) => i!==index))
+    function excluirItem(produtoId){
+        setCarrinho(carrinho.filter(item => item.produto.id !== produtoId))
     }
     return(
         <div className="encomenda-page">
@@ -85,6 +86,7 @@ function Encomenda(){
                 </div>
             </div>
         </div>
+        <ItemCarrinho carrinho={carrinho} onExcluir={excluirItem} />
                                     </div>
     )
 }
