@@ -94,3 +94,10 @@
 .item-carrinho button:hover {
     text-decoration: underline;
 }
+
+.carrinho-vazio {
+    text-align: center;
+    color: #9c8a7a;
+    font-size: 0.9rem;
+    padding: 1rem 0;
+}

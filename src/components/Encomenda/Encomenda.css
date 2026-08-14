@@ -214,3 +214,22 @@
     color: #3e2c23;
     font-size: 1.05rem;
 }
+
+.btn-add-carrinho {
+    height: 45px;
+    padding: 0 1rem;
+    background-color: #c17f45;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    align-self: flex-end;
+}
+
+.btn-add-carrinho:hover {
+    background-color: #a8672f;
+}

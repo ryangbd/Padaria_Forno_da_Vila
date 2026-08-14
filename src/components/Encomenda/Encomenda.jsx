@@ -1,7 +1,7 @@
 import { useState } from "react"
 import "./Encomenda.css"
 import produtos from "../../data/Produtos/Produtos.jsx"
-import ItemCarrinho from "../Carrinho/itemCarrinho.jsx"
+import ItemCarrinho from "../Carrinho/ItemCarrinho.jsx"
 function Encomenda(){
     const [form, setForm] = useState({nome:"", telefone:"", produtoId:"", dataRetirada:"", obs:""})
     const [quantidade, setQuantidade] = useState(1)
@@ -51,8 +51,8 @@ function Encomenda(){
                             <div className="campo-qtd">
                                 <label>Qtd.</label>
                                 <input type="number" min="0" value={quantidade} onChange={(e) => setQuantidade(Math.max(1, Number(e.target.value)))}/>
-                                <button type="button" onClick={adicionarAoCarrinho}>Adicionar ao carrinho</button>
                             </div>
+                                <button className="btn-add-carrinho"type="button" onClick={adicionarAoCarrinho}>Adicionar ao carrinho</button>
                            {/*<pre>{JSON.stringify(carrinho, null, 2)}</pre>*/}
                         </div>
 

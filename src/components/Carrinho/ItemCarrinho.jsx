@@ -1,5 +1,9 @@
 import '../Carrinho/ItemCarrinho.css'
 function ItemCarrinho({ carrinho, onExcluir }) {
+    console.log(carrinho)
+    if(carrinho.length===0){
+        return <span className="carrinho-vazio">Seu carrinho está vazio... ;D</span>
+    }
     const itensAgrupados = Object.values(
         carrinho.reduce((acc, item) => {
             const id = item.produto.id
