@@ -13,6 +13,13 @@ function Encomenda(){
     function handleChange(e){
         setForm({...form, [e.target.name]: e.target.value})
     }
+    function handleSubmit(e){
+        e.preventDefault()
+        if(carrinho.length===0){
+            alert("Adicione ao menos um produto ao carrinho antes de enviar!")
+            return
+        }
+    }
     function adicionarAoCarrinho(){
         const produto = produtos.find(p => p.id === Number(form.produtoId))
         const novoItem = {produto, quantidade}
@@ -30,17 +37,17 @@ function Encomenda(){
             <div className="ajuste">
 
                 <div className="box encomendabox">
-                    <form className="formEncomenda">
+                    <form className="formEncomenda" onSubmit={handleSubmit}>
                         <label htmlFor="nome">Nome</label>
-                        <input type="text" id="nome" name="nome" value={form.nome} onChange={handleChange} placeholder="Nome Completo"/>
+                        <input type="text" id="nome" name="nome" value={form.nome} onChange={handleChange} placeholder="Nome Completo" required/>
 
                         <label htmlFor="telefone">Telefone</label>
-                        <input type="number" id="telefone" name="telefone" value={form.telefone} onChange={handleChange} placeholder="(00) 00000-0000"/>
+                        <input type="number" id="telefone" name="telefone" value={form.telefone} onChange={handleChange} placeholder="(00) 00000-0000" required/>
 
                         <div className="linha-produto-qtd">
                             <div className="campo-produto">
                                 <label htmlFor="produto">Produto</label>
-                                <select id="produto" name="produtoId" value={form.produtoId} onChange={handleChange}>
+                                <select id="produto" name="produtoId" value={form.produtoId} onChange={handleChange} required>
                                     <option value="">Selecione...</option>
                                     {produtos.map(p => (
                                         <option key={p.id} value={p.id}>{p.nome}</option>
@@ -50,7 +57,7 @@ function Encomenda(){
 
                             <div className="campo-qtd">
                                 <label>Qtd.</label>
-                                <input type="number" min="0" value={quantidade} onChange={(e) => setQuantidade(Math.max(1, Number(e.target.value)))}/>
+                                <input type="number" min="0" value={quantidade} onChange={(e) => setQuantidade(Math.max(1, Number(e.target.value)))} required/>
                             </div>
                                 <button className="btn-add-carrinho"type="button" onClick={adicionarAoCarrinho}>Adicionar ao carrinho</button>
                            {/*<pre>{JSON.stringify(carrinho, null, 2)}</pre>*/}
@@ -58,7 +65,7 @@ function Encomenda(){
 
 
                         <label htmlFor="date">Data de retirada</label>
-                        <input type="date" id="date" name="dataRetirada" onChange={handleChange} value={form.dataRetirada} min={new Date().toISOString().split("T")[0]}/>
+                        <input type="date" id="date" name="dataRetirada" onChange={handleChange} value={form.dataRetirada} min={new Date().toISOString().split("T")[0]} required/>
 
                         <label htmlFor="obs">Observações</label>
                         <textarea id="obs" name="obs" value={form.obs} onChange={handleChange} rows="4"/>
