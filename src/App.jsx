@@ -7,7 +7,7 @@ import Encomenda from './components/Encomenda/Encomenda.jsx'
 
 function App(){
     return(
-        <div className="app">
+        <div className="app" >
             <Header/>
             <Hero/>
             <Destaques/>

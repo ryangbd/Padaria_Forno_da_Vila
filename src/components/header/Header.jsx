@@ -1,8 +1,10 @@
 import './header.css'
+import useScrollReveal from '../../hooks/useScrollReveal'
 
 function Header(){
+    const [ref, visivel] = useScrollReveal()
     return(
-        <div className="Header">
+        <div ref={ref} className={`Header ${visivel ? "revelado" : ""}`}>
             <div className="Header-content">
                 <span className="Header-eyebrow">Padaria artesanal</span>
 
