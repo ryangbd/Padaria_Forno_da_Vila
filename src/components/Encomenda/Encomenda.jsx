@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./Encomenda.css"
 import produtos from "../../data/Produtos/Produtos.jsx"
 import ItemCarrinho from "../Carrinho/ItemCarrinho.jsx"
@@ -18,13 +18,17 @@ function limitesRetirada() {
     return { minimo: dataLocalISO(hoje), maximo: dataLocalISO(limite) }
 }
 
-function Encomenda({ carrinho, onAdicionar, onAlterarQuantidade, onExcluir, onFinalizar }) {
+function Encomenda({ usuario, carrinho, onAdicionar, onAlterarQuantidade, onExcluir, onFinalizar }) {
     const [form, setForm] = useState({ nome: "", telefone: "", produtoId: "", dataRetirada: "", obs: "" })
     const [quantidade, setQuantidade] = useState(1)
     const [mostrarCarrinho, setMostrarCarrinho] = useState(false)
     const [mensagem, setMensagem] = useState("")
     const [comprovante, setComprovante] = useState(null)
     const { minimo, maximo } = limitesRetirada()
+
+    useEffect(() => {
+        if (usuario) setForm(atual => ({ ...atual, nome: usuario }))
+    }, [usuario])
 
     const valorTotal = carrinho.reduce((total, item) => total + item.produto.preco * item.quantidade, 0)
     const totalItens = carrinho.reduce((total, item) => total + item.quantidade, 0)
@@ -84,7 +88,7 @@ function Encomenda({ carrinho, onAdicionar, onAlterarQuantidade, onExcluir, onFi
         setComprovante(pedido)
         setMensagem("")
         setMostrarCarrinho(false)
-        setForm({ nome: "", telefone: "", produtoId: "", dataRetirada: "", obs: "" })
+        setForm({ nome: usuario || "", telefone: "", produtoId: "", dataRetirada: "", obs: "" })
     }
 
     return (
