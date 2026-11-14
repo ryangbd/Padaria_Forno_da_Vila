@@ -1,5 +1,6 @@
 import './header.css'
 import useScrollReveal from '../../hooks/useScrollReveal'
+import fachadaImg from '../../assets/images/Fachada.webp'
 
 function Header(){
     const [ref, visivel] = useScrollReveal()
