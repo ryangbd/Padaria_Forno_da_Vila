@@ -1,28 +1,30 @@
 import '../Carrinho/ItemCarrinho.css'
-function ItemCarrinho({ carrinho, onExcluir }) {
-    console.log(carrinho)
-    if(carrinho.length===0){
-        return <span className="carrinho-vazio">Seu carrinho está vazio... ;D</span>
+
+function ItemCarrinho({ carrinho, onAlterarQuantidade, onExcluir }) {
+    if (carrinho.length === 0) {
+        return <p className="carrinho-vazio">Seu carrinho está vazio.</p>
     }
-    const itensAgrupados = Object.values(
-        carrinho.reduce((acc, item) => {
-            const id = item.produto.id
-            if (!acc[id]) acc[id] = { produto: item.produto, quantidade: 0 }
-            acc[id].quantidade += item.quantidade
-            return acc
-        }, {})
-    )
 
     return (
-        <>
-            {itensAgrupados.map(item => (
-                <div key={item.produto.id} className="item-carrinho">
-                    <span>{item.produto.nome} x{item.quantidade}</span>
-                    <span>R${(item.produto.preço * item.quantidade).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-                    <button type="button" onClick={() => onExcluir(item.produto.id)}>Excluir</button>
-                </div>
+        <div className="lista-carrinho">
+            {carrinho.map(({ produto, quantidade }) => (
+                <article key={produto.id} className="item-carrinho">
+                    <div className="item-carrinho-info">
+                        <strong>{produto.nome}</strong>
+                        <span>R$ {(produto.preco * quantidade).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                        <small>R$ {produto.preco.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} cada</small>
+                    </div>
+                    <div className="item-carrinho-acoes">
+                        <div className="controle-quantidade" aria-label={`Quantidade de ${produto.nome}`}>
+                            <button type="button" onClick={() => onAlterarQuantidade(produto.id, quantidade - 1)} aria-label={`Diminuir ${produto.nome}`}>−</button>
+                            <span>{quantidade}</span>
+                            <button type="button" onClick={() => onAlterarQuantidade(produto.id, quantidade + 1)} aria-label={`Aumentar ${produto.nome}`}>+</button>
+                        </div>
+                        <button className="btn-remover-item" type="button" onClick={() => onExcluir(produto.id)}>Remover</button>
+                    </div>
+                </article>
             ))}
-        </>
+        </div>
     )
 }
 

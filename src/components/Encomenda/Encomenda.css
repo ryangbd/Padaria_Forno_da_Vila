@@ -233,3 +233,32 @@
 .btn-add-carrinho:hover {
     background-color: #a8672f;
 }
+
+.encomenda-page { width: 100%; }
+.encomenda-content { width: 100%; padding: 3rem 1.5rem; }
+.ajuste { gap: 2rem; align-items: flex-start; padding: 0 1rem 2rem; }
+.encomendabox { width: min(100%, 560px); }
+.comanda { width: min(100%, 380px); margin: 1rem 0 0; }
+.linha-comanda > span:last-child { text-align: right; }
+.resumo-produtos { margin-top: -0.5rem; color: #5c4033; font-size: 0.85rem; line-height: 1.5; }
+.mensagem-pedido { margin-top: 0.6rem; padding: 0.7rem; border-radius: 8px; background: #f3e9d4; color: #5c4033; font-size: 0.88rem; }
+.overlay-carrinho { padding: 1rem; }
+.modal-carrinho { max-height: min(80vh, 680px); }
+
+@media (max-width: 900px) {
+    .ajuste { flex-direction: column; align-items: center; }
+    .encomendabox, .comanda { width: min(100%, 560px); }
+    .comanda { margin: 1rem 0 0; }
+}
+
+@media (max-width: 560px) {
+    .encomenda-content { padding: 2rem 0.75rem; }
+    .encomenda-page h1 { font-size: 2rem; }
+    .subtitulo { text-align: center; margin-bottom: 1.5rem; }
+    .ajuste { padding: 0 0.25rem 1rem; gap: 1.5rem; }
+    .encomendabox { padding: 0 1rem 1.25rem; }
+    .linha-produto-qtd { gap: 0.5rem; }
+    .campo-qtd { width: 62px; }
+    .btn-add-carrinho { padding: 0 0.65rem; font-size: 0.8rem; }
+    .comanda { padding: 2rem 1.25rem 1.5rem; }
+}

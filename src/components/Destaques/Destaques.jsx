@@ -6,53 +6,34 @@ import paoItalianoImg from "../../assets/images/pao-italiano.webp"
 import sonhoImg from "../../assets/images/sonho.webp"
 import boloCenouraImg from "../../assets/images/bolo-de-cenoura.webp"
 import cafeEspecialImg from "../../assets/images/cafe.webp"
+import produtos from "../../data/Produtos/Produtos.jsx"
 
+const imagens = [paoFrancesImg, croissantChocolateImg, paoItalianoImg, sonhoImg, boloCenouraImg, cafeEspecialImg]
+const descricoes = [
+    "Crocante por fora e macio por dentro.",
+    "Massa folhada leve e amanteigada.",
+    "Fermentação lenta e sabor marcante.",
+    "Massa fofinha com recheio cremoso.",
+    "Receita caseira com cobertura de chocolate.",
+    "Grãos selecionados e preparo na hora.",
+]
 
-function Destaques(){
-    return(
-        <div className="box destaques">
-            <div className="titlebox">
-            <span>PRODUTOS EM DESTAQUE</span>
-            </div>
+function Destaques({ onAdicionar }) {
+    return (
+        <section className="box destaques">
+            <div className="titlebox"><span>PRODUTOS EM DESTAQUE</span></div>
             <div className="card-section">
-                <Card
-                    imagem={paoFrancesImg}
-                    nome="Pão Francês"
-                    descricao="Crocante por fora e macio por dentro."
-                    preco="0,80"
-                />
-                <Card
-                    imagem={croissantChocolateImg}
-                    nome="Croissant Artesanal"
-                    descricao="Massa folhada leve e amanteigada."
-                    preco="6,50"
-                />
-                <Card
-                    imagem={paoItalianoImg}
-                    nome="Pão Italiano"
-                    descricao="Fermentação lenta e sabor marcante."
-                    preco="8,00"
-                />
-                <Card
-                    imagem={sonhoImg}
-                    nome="Sonho"
-                    descricao="Massa fofinha com recheio cremoso."
-                    preco="5,00"
-                />
-                <Card
-                    imagem={boloCenouraImg}
-                    nome="Bolo de Cenoura"
-                    descricao="Receita caseira com cobertura de chocolate."
-                    preco="7,50"
-                />
-                <Card
-                    imagem={cafeEspecialImg}
-                    nome="Café Especial"
-                    descricao="Grãos selecionados e preparo na hora."
-                    preco="5,00"
-                />
+                {produtos.map((produto, index) => (
+                    <Card
+                        key={produto.id}
+                        produto={produto}
+                        imagem={imagens[index]}
+                        descricao={descricoes[index]}
+                        onAdicionar={onAdicionar}
+                    />
+                ))}
             </div>
-        </div>
+        </section>
     )
 }
 
