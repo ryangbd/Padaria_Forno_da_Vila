@@ -1,9 +1,11 @@
 import "./sobre.css"
 import padariaImg from "../../assets/images/Padaria-Img.webp"
+import useScrollReveal from "../../hooks/useScrollReveal"
 
 function Sobre(){
+    const [ref, visivel] = useScrollReveal()
     return(
-        <div className="box boxsobre">
+        <div id="nossa-historia" ref={ref} className={`box boxsobre scroll-reveal ${visivel ? 'is-visible' : ''}`}>
             <div className="sobre-container">
                 <div className="sobre-imagem">
                     <img src={padariaImg} alt="Interior da padaria Forno da Vila" />

@@ -1,10 +1,12 @@
 import './hero.css'
+import useScrollReveal from '../../hooks/useScrollReveal'
 import bolinhoImg from "../../assets/images/Padaria-people.webp"
 import downArrow from "../../assets/icons/down-arrow.svg";
 
 function Hero(){
+    const [ref, visivel] = useScrollReveal()
     return (
-        <div className="box">
+        <div ref={ref} className={`box scroll-reveal ${visivel ? 'is-visible' : ''}`}>
             <section className="left">
                 <span className="hero-tag">Feito com carinho, todos os dias</span>
 
@@ -17,8 +19,8 @@ function Hero(){
                 </p>
 
                 <div className="hero-actions">
-                    <button className="btn-cardapio">Ver cardápio <img src={downArrow} alt="" /></button>
-                    <button className="btn-secundario">Conhecer nossa história</button>
+                    <a className="btn-cardapio" href="#cardapio">Ver cardápio <img src={downArrow} alt="" /></a>
+                    <a className="btn-secundario" href="#nossa-historia">Conhecer nossa história</a>
                 </div>
 
                 <div className="hero-stats">

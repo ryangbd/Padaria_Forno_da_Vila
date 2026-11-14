@@ -184,3 +184,18 @@
         width: 100%;
     }
 }
+.hero-actions a {
+    text-decoration: none;
+}
+
+.hero-actions a:focus-visible {
+    outline: 2px solid var(--laranja-escuro);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-actions a:hover,
+    .hero-actions a:active {
+        transform: none;
+    }
+}

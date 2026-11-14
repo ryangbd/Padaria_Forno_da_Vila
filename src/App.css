@@ -137,3 +137,95 @@ body{
     outline: 2px solid var(--laranja);
     outline-offset: 3px;
 }
+
+/* Movimento consistente para rolagem, diálogos e controles */
+.scroll-reveal,
+.Header {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 650ms ease, transform 650ms cubic-bezier(.2, .7, .25, 1);
+}
+
+.scroll-reveal.is-visible,
+.Header.revelado {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overlay-carrinho {
+    animation: overlay-entrar 220ms ease-out both;
+}
+
+.modal-carrinho {
+    animation: modal-entrar 260ms cubic-bezier(.2, .75, .25, 1.15) both;
+    transform-origin: center;
+}
+
+.overlay-carrinho.modal-fechando {
+    animation: overlay-sair 220ms ease-in both;
+}
+
+.overlay-carrinho.modal-fechando .modal-carrinho {
+    animation: modal-sair 220ms ease-in both;
+}
+
+@keyframes overlay-entrar {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes overlay-sair {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes modal-entrar {
+    from { opacity: 0; transform: translateY(14px) scale(.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes modal-sair {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(8px) scale(.98); }
+}
+
+.app button:not(:disabled) {
+    transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+@media (hover: hover) {
+    .app button:not(:disabled):hover {
+        transform: translateY(-1px);
+    }
+}
+
+.app button:not(:disabled):active {
+    transform: scale(.97);
+}
+
+.app button:focus-visible {
+    outline: 3px solid var(--laranja-foco);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+
+    .scroll-reveal, .Header {
+        opacity: 1;
+        transform: none;
+    }
+}
+html {
+    scroll-behavior: smooth;
+}
+
+#cardapio,
+#nossa-historia {
+    scroll-margin-top: 4.5rem;
+}

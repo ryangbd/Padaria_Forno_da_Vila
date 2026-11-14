@@ -5,6 +5,7 @@ import Hero from './components/hero/Hero.jsx'
 import Destaques from './components/Destaques/Destaques.jsx'
 import Sobre from "./components/Sobre/Sobre.jsx"
 import Encomenda from './components/Encomenda/Encomenda.jsx'
+import Modal from './components/Modal.jsx'
 
 function App(){
     const [usuario, setUsuario] = useState(() => {
@@ -130,9 +131,10 @@ function App(){
                     </div>
                 )}
             </div>
-            {mostrarLogin && <div className="overlay-carrinho" onClick={() => setMostrarLogin(false)}>
-                <section className="modal-carrinho modal-conta" role="dialog" aria-modal="true" aria-labelledby="titulo-login" onClick={event => event.stopPropagation()}>
-                    <div className="modal-carrinho-header"><h2 id="titulo-login">Entrar</h2><button type="button" onClick={() => setMostrarLogin(false)} aria-label="Fechar">×</button></div>
+            {mostrarLogin && <Modal onClose={() => setMostrarLogin(false)} labelledBy="titulo-login" className="modal-conta">
+                {fechar => <>
+                
+                    <div className="modal-carrinho-header"><h2 id="titulo-login">Entrar</h2><button type="button" onClick={fechar} aria-label="Fechar">×</button></div>
                     <p>Acesse seus pedidos salvos neste navegador.</p>
                     <form className="form-conta" onSubmit={entrar}>
                         <label htmlFor="nome-login">Seu nome</label>
@@ -141,11 +143,12 @@ function App(){
                         <button className="btn-continuar-comprando" type="submit">Continuar</button>
                     </form>
                     <small>Login demonstrativo. A sessão termina ao fechar a aba.</small>
-                </section>
-            </div>}
-            {mostrarPedidos && <div className="overlay-carrinho" onClick={() => setMostrarPedidos(false)}>
-                <section className="modal-carrinho modal-pedidos" role="dialog" aria-modal="true" aria-labelledby="titulo-pedidos" onClick={event => event.stopPropagation()}>
-                    <div className="modal-carrinho-header"><div><h2 id="titulo-pedidos">Meus pedidos</h2><p>Pedidos de {usuario}</p></div><button type="button" onClick={() => setMostrarPedidos(false)} aria-label="Fechar">×</button></div>
+                </>}
+            </Modal>}
+            {mostrarPedidos && <Modal onClose={() => setMostrarPedidos(false)} labelledBy="titulo-pedidos" className="modal-pedidos">
+                {fechar => <>
+                
+                    <div className="modal-carrinho-header"><div><h2 id="titulo-pedidos">Meus pedidos</h2><p>Pedidos de {usuario}</p></div><button type="button" onClick={fechar} aria-label="Fechar">×</button></div>
                     {pedidos.length === 0 ? <p className="pedidos-vazios">Ainda não há pedidos salvos com esse nome neste navegador.</p> : <div className="lista-pedidos">
                         {pedidos.map(pedido => <article className="pedido-salvo" key={pedido.id}>
                             <div><strong>{pedido.id}</strong><span>Retirada em {new Date(`${pedido.dataRetirada}T00:00:00`).toLocaleDateString('pt-BR')}</span><span>{pedido.itens.reduce((soma, item) => soma + item.quantidade, 0)} itens</span></div>
@@ -153,18 +156,19 @@ function App(){
                         </article>)}
                     </div>}
                     <small>Os pedidos ficam salvos neste navegador.</small>
-                </section>
-            </div>}
-            {pedidoSelecionado && <div className="overlay-carrinho" onClick={() => setPedidoSelecionado(null)}>
-                <section className="modal-carrinho comprovante" role="dialog" aria-modal="true" aria-labelledby="titulo-comprovante-salvo" onClick={event => event.stopPropagation()}>
+                </>}
+            </Modal>}
+            {pedidoSelecionado && <Modal onClose={() => setPedidoSelecionado(null)} labelledBy="titulo-comprovante-salvo" className="comprovante">
+                {fechar => <>
+                
                     <div className="comprovante-cabecalho"><span className="comprovante-check" aria-hidden="true">✓</span><p>PEDIDO SIMULADO</p><h2 id="titulo-comprovante-salvo">Comprovante</h2><span>Pedido {pedidoSelecionado.id}</span></div>
                     <div className="comprovante-dados"><div><span>Cliente</span><strong>{pedidoSelecionado.cliente.nome}</strong></div><div><span>Telefone</span><strong>{pedidoSelecionado.cliente.telefone}</strong></div><div><span>Retirada</span><strong>{new Date(`${pedidoSelecionado.dataRetirada}T00:00:00`).toLocaleDateString('pt-BR')}</strong></div></div>
                     <div className="comprovante-itens">{pedidoSelecionado.itens.map(item => <div key={item.produtoId}><span>{item.quantidade} × {item.nome}</span><strong>R$ {item.subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong></div>)}</div>
                     {pedidoSelecionado.observacoes && <p className="comprovante-obs"><strong>Observações:</strong> {pedidoSelecionado.observacoes}</p>}
                     <div className="comprovante-total"><span>Total</span><strong>R$ {pedidoSelecionado.total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong></div>
-                    <button className="btn-continuar-comprando" type="button" onClick={() => setPedidoSelecionado(null)}>Fechar comprovante</button>
-                </section>
-            </div>}
+                    <button className="btn-continuar-comprando" type="button" onClick={fechar}>Fechar comprovante</button>
+                </>}
+            </Modal>}
         </div>
     )
 }

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import "./Encomenda.css"
 import produtos from "../../data/Produtos/Produtos.jsx"
 import ItemCarrinho from "../Carrinho/ItemCarrinho.jsx"
+import Modal from "../Modal.jsx"
+import useScrollReveal from "../../hooks/useScrollReveal"
 
 function dataLocalISO(data) {
     const ano = data.getFullYear()
@@ -25,6 +27,7 @@ function Encomenda({ usuario, carrinho, onAdicionar, onAlterarQuantidade, onExcl
     const [mensagem, setMensagem] = useState("")
     const [comprovante, setComprovante] = useState(null)
     const { minimo, maximo } = limitesRetirada()
+    const [ref, visivel] = useScrollReveal()
 
     useEffect(() => {
         if (usuario) setForm(atual => ({ ...atual, nome: usuario }))
@@ -153,22 +156,22 @@ function Encomenda({ usuario, carrinho, onAdicionar, onAlterarQuantidade, onExcl
             </div>
 
             {mostrarCarrinho && (
-                <div className="overlay-carrinho" onClick={() => setMostrarCarrinho(false)}>
-                    <section className="modal-carrinho" role="dialog" aria-modal="true" aria-labelledby="titulo-carrinho" onClick={event => event.stopPropagation()}>
+                <Modal onClose={() => setMostrarCarrinho(false)} labelledBy="titulo-carrinho">
+                    {fechar => <>
                         <div className="modal-carrinho-header">
                             <div><h2 id="titulo-carrinho">Seu carrinho</h2><p>{totalItens} {totalItens === 1 ? "item" : "itens"}</p></div>
-                            <button type="button" onClick={() => setMostrarCarrinho(false)} aria-label="Fechar carrinho">×</button>
+                            <button type="button" onClick={fechar} aria-label="Fechar carrinho">×</button>
                         </div>
                         <ItemCarrinho carrinho={carrinho} onAlterarQuantidade={onAlterarQuantidade} onExcluir={onExcluir} />
                         {carrinho.length > 0 && <div className="rodape-carrinho"><span>Total</span><strong>R$ {valorTotalFormatado}</strong></div>}
-                        <button className="btn-continuar-comprando" type="button" onClick={() => setMostrarCarrinho(false)}>Continuar escolhendo</button>
-                    </section>
-                </div>
+                        <button className="btn-continuar-comprando" type="button" onClick={fechar}>Continuar escolhendo</button>
+                    </>}
+                </Modal>
             )}
 
             {comprovante && (
-                <div className="overlay-carrinho">
-                    <section className="modal-carrinho comprovante" role="dialog" aria-modal="true" aria-labelledby="titulo-comprovante">
+                <Modal onClose={() => setComprovante(null)} labelledBy="titulo-comprovante" className="comprovante">
+                    {fechar => <>
                         <div className="comprovante-cabecalho">
                             <span className="comprovante-check" aria-hidden="true">✓</span>
                             <p>PEDIDO SIMULADO</p>
@@ -194,9 +197,9 @@ function Encomenda({ usuario, carrinho, onAdicionar, onAlterarQuantidade, onExcl
                         </div>
                         {comprovante.observacoes && <p className="comprovante-obs"><strong>Observações:</strong> {comprovante.observacoes}</p>}
                         <div className="comprovante-total"><span>Total</span><strong>R$ {comprovante.total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong></div>
-                        <button className="btn-continuar-comprando" type="button" onClick={() => setComprovante(null)}>Fechar comprovante</button>
-                    </section>
-                </div>
+                        <button className="btn-continuar-comprando" type="button" onClick={fechar}>Fechar comprovante</button>
+                    </>}
+                </Modal>
             )}
         </section>
     )

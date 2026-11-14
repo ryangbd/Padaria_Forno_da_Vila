@@ -7,6 +7,7 @@ import sonhoImg from "../../assets/images/sonho.webp"
 import boloCenouraImg from "../../assets/images/bolo-de-cenoura.webp"
 import cafeEspecialImg from "../../assets/images/cafe.webp"
 import produtos from "../../data/Produtos/Produtos.jsx"
+import useScrollReveal from "../../hooks/useScrollReveal"
 
 const imagens = [paoFrancesImg, croissantChocolateImg, paoItalianoImg, sonhoImg, boloCenouraImg, cafeEspecialImg]
 const descricoes = [
@@ -19,8 +20,9 @@ const descricoes = [
 ]
 
 function Destaques({ onAdicionar }) {
+    const [ref, visivel] = useScrollReveal()
     return (
-        <section className="box destaques">
+        <section id="cardapio" ref={ref} className={`box destaques scroll-reveal ${visivel ? 'is-visible' : ''}`}>
             <div className="titlebox"><span>PRODUTOS EM DESTAQUE</span></div>
             <div className="card-section">
                 {produtos.map((produto, index) => (
