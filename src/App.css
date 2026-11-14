@@ -11,6 +11,8 @@ body{
     justify-content: center;
 }
 
+#root { width: 100%; min-width: 0; }
+
 .aviso-carrinho {
     position: fixed;
     bottom: max(1.5rem, env(safe-area-inset-bottom));
@@ -25,10 +27,10 @@ body{
     align-items: center;
     gap: 0.85rem;
     padding: 1rem 1.25rem;
-    border: 1px solid #d6dfcb;
+    border: 1px solid var(--borda);
     border-radius: 14px;
-    background: #fffdf9;
-    color: #3e2c23;
+    background: var(--superficie);
+    color: var(--marrom);
     box-shadow: 0 8px 30px #3e2c2326;
     animation: aviso-carrinho-entrada 2800ms ease both;
 }
@@ -42,7 +44,7 @@ body{
     height: 2.25rem;
     flex-shrink: 0;
     border-radius: 50%;
-    background: #657a51;
+    background: var(--laranja);
     color: white;
     font-size: 1.25rem;
     animation: aviso-carrinho-pulso 450ms ease-out;
@@ -69,7 +71,7 @@ body{
     top: 0;
     z-index: 20;
     padding: 0.65rem 1.5rem;
-    background: #3e2c23;
+    background: var(--marrom);
     border-bottom: 1px solid #5d4431;
 }
 
@@ -78,7 +80,7 @@ body{
     justify-content: flex-end;
     align-items: center;
     gap: 0.7rem;
-    color: #f3e9d4;
+    color: var(--creme);
     font-size: 0.88rem;
 }
 .conta-nav > span {
@@ -90,36 +92,48 @@ body{
 .conta-nav > button { flex-shrink: 0; }
 .conta-nav button, .pedido-salvo-acoes button {
     min-height: 40px;
-    border: 1px solid #d9c7b8;
+    border: 1px solid var(--borda);
     border-radius: 8px;
     padding: 0.55rem 0.9rem;
-    background: #fffdf9;
-    color: #3e2c23;
+    background: var(--superficie);
+    color: var(--marrom);
     font: inherit;
     font-weight: 600;
     cursor: pointer;
 }
-.conta-nav button:hover, .pedido-salvo-acoes button:hover { background: #657a51; border-color: #657a51; color: white; }
-.conta-nav .conta-sair { border-color: transparent; background: transparent; color: #f3e9d4; }
+.conta-nav button:hover, .pedido-salvo-acoes button:hover { background: var(--laranja); border-color: var(--laranja); color: white; }
+.conta-nav .conta-sair { border-color: transparent; background: transparent; color: var(--creme); }
 .conta-nav .conta-sair:hover { background: #5d4431; }
 .modal-conta > p, .modal-conta > small, .modal-pedidos > small { color: #7a6a5e; font-size: 0.85rem; }
 .form-conta { display: flex; flex-direction: column; gap: 0.7rem; }
 .form-conta label { color: #5d4431; font-weight: 600; }
-.form-conta input { border: 1px solid #d9c7b8; border-radius: 8px; padding: 0.75rem; font: inherit; }
-.form-conta input:focus { outline: 3px solid #657a5133; border-color: #657a51; }
+.form-conta input { border: 1px solid var(--borda); border-radius: 8px; padding: 0.75rem; font: inherit; }
+.form-conta input:focus { outline: 3px solid var(--laranja-foco); border-color: var(--laranja); }
 .form-conta > p { color: #a34f3b; font-size: 0.85rem; }
 .pedidos-vazios { color: #7a6a5e; padding: 1rem 0; }
 .lista-pedidos { display: flex; flex-direction: column; gap: 0.75rem; max-height: 55vh; overflow-y: auto; }
-.pedido-salvo { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border: 1px solid #e5d5c3; border-radius: 10px; padding: 0.85rem; }
+.pedido-salvo { display: flex; align-items: center; justify-content: space-between; gap: 1rem; border: 1px solid var(--borda); border-radius: 10px; padding: 0.85rem; }
 .pedido-salvo > div:first-child, .pedido-salvo-acoes { display: flex; flex-direction: column; gap: 0.35rem; }
-.pedido-salvo > div:first-child strong { color: #3e2c23; }
+.pedido-salvo > div:first-child strong { color: var(--marrom); }
 .pedido-salvo span { color: #7a6a5e; font-size: 0.8rem; }
 .pedido-salvo-acoes { align-items: flex-end; }
-.pedido-salvo-acoes > strong { color: #3e2c23; }
+.pedido-salvo-acoes > strong { color: var(--marrom); }
 .pedido-salvo-acoes button { white-space: nowrap; font-size: 0.78rem; }
 @media (max-width: 560px) {
     .conta-header { padding-inline: 0.65rem; }
     .conta-nav { gap: 0.35rem; font-size: 0.75rem; }
     .conta-nav button { padding: 0.4rem 0.55rem; }
     .pedido-salvo { align-items: flex-start; }
+}
+
+.app .btn-cardapio, .app .btn-secundario:hover, .app .btn-add-carrinho, .app .btn-continuar-comprando,
+.app .btn-visualizar-carrinho:hover, .app .aviso-carrinho-check, .app .comprovante-check,
+.app .formEncomenda button[type="submit"], .app .sobre-lista li::before,
+.app .conta-nav button:not(.conta-sair):hover, .app .pedido-salvo-acoes button:hover,
+.app .carrinho:hover {
+    color: #fff;
+}
+.conta-nav button:focus-visible, .pedido-salvo-acoes button:focus-visible {
+    outline: 2px solid var(--laranja);
+    outline-offset: 3px;
 }

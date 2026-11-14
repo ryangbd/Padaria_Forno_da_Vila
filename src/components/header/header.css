@@ -3,9 +3,9 @@
 .Header {
     box-sizing: border-box;
     position: relative;
-    width: 99vw;
+    width: 100%;
     height: 100vh;
-    background: #F3E9D4;
+    background: var(--creme);
     overflow: hidden;
     display: flex;
     align-items: stretch;
@@ -27,7 +27,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 3em 0 0 3em;
-    margin: 0 2.5em 2.5em 0;
+    margin: 0 0 2.5em;
 }
 
 .Header-image img {
@@ -44,7 +44,7 @@
     font-weight: 600;
     letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: #657a51;
+    color: var(--laranja);
     margin-bottom: 1em;
 }
 

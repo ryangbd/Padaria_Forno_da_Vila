@@ -12,7 +12,7 @@
 }
 
 .encomenda-page h1 {
-    color: #3e2c23;
+    color: var(--marrom);
     font-size: 2.4rem;
     font-weight: 800;
 }
@@ -29,7 +29,7 @@
     align-items: center;
     flex-wrap: wrap;
     flex-direction: column;
-    background-color: #fdf6ec;
+    background-color: var(--creme);
     padding-top: 2em;
 }
 
@@ -61,11 +61,11 @@
     box-sizing: border-box;
     width: 100%;
     padding: 0.7rem 0.9rem;
-    border: 1px solid #d9c7b8;
+    border: 1px solid var(--borda);
     border-radius: 8px;
-    background-color: #fffdf9;
+    background-color: var(--superficie);
     font-size: 1rem;
-    color: #3e2c23;
+    color: var(--marrom);
     outline: none;
     font-family: inherit;
     resize: vertical;
@@ -75,7 +75,7 @@
 .formEncomenda input:focus,
 .formEncomenda select:focus,
 .formEncomenda textarea:focus {
-    border-color: #c17f45;
+    border-color: var(--laranja);
     box-shadow: 0 0 0 3px rgba(193, 127, 69, 0.15);
 }
 
@@ -116,7 +116,7 @@
     height: 32px;
     border: none;
     border-radius: 50%;
-    background-color: #c17f45;
+    background-color: var(--laranja);
     color: #fff;
     font-size: 1.1rem;
     font-weight: bold;
@@ -125,7 +125,7 @@
 }
 
 .seletor-quantidade-botoes button:hover {
-    background-color: #a8672f;
+    background-color: var(--laranja-escuro);
 }
 
 .seletor-quantidade-botoes button:active {
@@ -135,7 +135,7 @@
 .formEncomenda button[type="submit"] {
     margin-top: 1.5rem;
     padding: 0.9rem;
-    background-color: #c17f45;
+    background-color: var(--laranja);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -146,15 +146,15 @@
 }
 
 .formEncomenda button[type="submit"]:hover {
-    background-color: #a8672f;
+    background-color: var(--laranja-escuro);
 }
 
 .comanda {
     position: relative;
     width: 25vw;
     margin-bottom: 17%;
-    background-color: #fffdf9;
-    border: #c17f45 1px dashed;
+    background-color: var(--superficie);
+    border: var(--laranja) 1px dashed;
     border-radius: 15px;
     padding: 2.5rem 2rem 2rem;
     display: flex;
@@ -166,7 +166,7 @@
     position: absolute;
     top: -14px;
     right: 20px;
-    background-color: #3e2c23;
+    background-color: var(--marrom);
     color: #fff;
     font-size: 0.75rem;
     font-weight: 600;
@@ -175,7 +175,7 @@
 }
 
 .titulo-comanda {
-    color: #c17f45;
+    color: var(--laranja);
     font-weight: 700;
     font-size: 0.95rem;
     letter-spacing: 0.5px;
@@ -198,27 +198,27 @@
 }
 
 .linha-comanda p:last-child {
-    color: #3e2c23;
+    color: var(--marrom);
     font-weight: 500;
 }
 
 .barrinha {
     width: 100%;
     height: 1px;
-    border-top: #c17f45 1px dashed;
+    border-top: var(--laranja) 1px dashed;
     margin: 0.2rem 0;
 }
 
 .linha-comanda.total {
     font-weight: 700;
-    color: #3e2c23;
+    color: var(--marrom);
     font-size: 1.05rem;
 }
 
 .btn-add-carrinho {
     height: 45px;
     padding: 0 1rem;
-    background-color: #c17f45;
+    background-color: var(--laranja);
     color: #fff;
     border: none;
     border-radius: 8px;
@@ -258,24 +258,24 @@
 .comanda { width: min(100%, 380px); margin: 1rem 0 0; }
 .linha-comanda > span:last-child { text-align: right; }
 .resumo-produtos { margin-top: -0.5rem; color: #5c4033; font-size: 0.85rem; line-height: 1.5; }
-.mensagem-pedido { margin-top: 0.6rem; padding: 0.7rem; border-radius: 8px; background: #f3e9d4; color: #5c4033; font-size: 0.88rem; }
+.mensagem-pedido { margin-top: 0.6rem; padding: 0.7rem; border-radius: 8px; background: var(--creme); color: #5c4033; font-size: 0.88rem; }
 .overlay-carrinho { padding: 1rem; }
 .modal-carrinho { max-height: min(80vh, 680px); }
 
 .comprovante { gap: 1.1rem; }
 .comprovante-cabecalho { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.35rem; color: #5c4033; }
-.comprovante-cabecalho h2 { color: #3e2c23; font-size: 1.35rem; }
-.comprovante-cabecalho > p { color: #657a51; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; }
+.comprovante-cabecalho h2 { color: var(--marrom); font-size: 1.35rem; }
+.comprovante-cabecalho > p { color: var(--laranja); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; }
 .comprovante-cabecalho > span:last-child { color: #7a6a5e; font-size: 0.85rem; }
-.comprovante-check { display: grid; place-items: center; width: 3rem; height: 3rem; margin-bottom: 0.35rem; border-radius: 50%; background: #657a51; color: #fff; font-size: 1.6rem; }
-.comprovante-numero { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding: 0.75rem; border: 1px dashed #c17f45; border-radius: 10px; color: #7a6a5e; font-size: 0.8rem; }
-.comprovante-numero strong { color: #3e2c23; font-size: 1.05rem; letter-spacing: 0.04em; }
+.comprovante-check { display: grid; place-items: center; width: 3rem; height: 3rem; margin-bottom: 0.35rem; border-radius: 50%; background: var(--laranja); color: #fff; font-size: 1.6rem; }
+.comprovante-numero { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding: 0.75rem; border: 1px dashed var(--laranja); border-radius: 10px; color: #7a6a5e; font-size: 0.8rem; }
+.comprovante-numero strong { color: var(--marrom); font-size: 1.05rem; letter-spacing: 0.04em; }
 .comprovante-dados { display: grid; gap: 0.55rem; }
 .comprovante-dados div, .comprovante-itens div, .comprovante-total { display: flex; justify-content: space-between; gap: 1rem; }
 .comprovante-dados span { color: #9c8a7a; }
-.comprovante-dados strong { color: #3e2c23; text-align: right; }
-.comprovante-itens { display: flex; flex-direction: column; gap: 0.55rem; padding: 0.9rem 0; border-top: 1px dashed #d9c7b8; border-bottom: 1px dashed #d9c7b8; color: #5c4033; font-size: 0.88rem; }
-.comprovante-total { align-items: center; color: #3e2c23; font-size: 1.05rem; }
+.comprovante-dados strong { color: var(--marrom); text-align: right; }
+.comprovante-itens { display: flex; flex-direction: column; gap: 0.55rem; padding: 0.9rem 0; border-top: 1px dashed var(--borda); border-bottom: 1px dashed var(--borda); color: #5c4033; font-size: 0.88rem; }
+.comprovante-total { align-items: center; color: var(--marrom); font-size: 1.05rem; }
 .comprovante-total strong { font-size: 1.2rem; }
 .comprovante-obs { color: #5c4033; font-size: 0.85rem; }
 

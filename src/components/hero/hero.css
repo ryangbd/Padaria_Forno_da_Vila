@@ -6,7 +6,7 @@
     align-items: center;
     padding: 6em 10em;
     margin: 6em 0em;
-    color: #c76528;
+    color: var(--laranja);
     gap: 5em;
 }
 
@@ -24,7 +24,7 @@
     font-weight: 600;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: #c76528;
+    color: var(--laranja);
     background-color: rgba(199, 101, 40, 0.1);
     padding: 0.5em 1em;
     border-radius: 2em;
@@ -36,7 +36,7 @@
     font-weight: 700;
     line-height: 1.35;
     margin: 0;
-    color: #c76528;
+    color: var(--laranja);
 }
 
 .hero-subtitle{
@@ -60,7 +60,7 @@
     gap: 0.6em;
     border: none;
     border-radius: 2em;
-    background-color: #c76528;
+    background-color: var(--laranja);
     width: fit-content;
     color: white;
     font-size: 1.1em;
@@ -70,9 +70,9 @@
 }
 
 .btn-cardapio:hover {
-    background-color: #e2712b;
+    background-color: var(--laranja-escuro);
     transform: translateY(-2px);
-    box-shadow: #e2712b 1px 1px 8px;
+    box-shadow: var(--laranja-escuro) 1px 1px 8px;
 }
 
 .btn-cardapio:active {
@@ -86,10 +86,10 @@
 }
 
 .btn-secundario{
-    border: 2px solid #c76528;
+    border: 2px solid var(--laranja);
     background-color: transparent;
     border-radius: 2em;
-    color: #c76528;
+    color: var(--laranja);
     font-size: 1.1em;
     font-weight: 600;
     padding: 0.7em 1.5em;
@@ -98,7 +98,7 @@
 }
 
 .btn-secundario:hover{
-    background-color: #c76528;
+    background-color: var(--laranja);
     color: white;
     transform: translateY(-2px);
 }
@@ -124,7 +124,7 @@
 .stat strong{
     font-size: 1.5em;
     font-weight: 700;
-    color: #c76528;
+    color: var(--laranja);
 }
 
 .stat span{
@@ -138,7 +138,7 @@
     width: 35%;
     height: 53vh;
     border-radius: 15px;
-    background-color: #fbf6ee;
+    background-color: var(--superficie);
     display: flex;
     justify-content: center;
     align-items: center;
