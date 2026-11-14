@@ -1,4 +1,5 @@
 import './header.css'
+import fachadaImg from '../../assets/images/Fachada.webp'
 import useScrollReveal from '../../hooks/useScrollReveal'
 import fachadaImg from '../../assets/images/Fachada.webp'
 
