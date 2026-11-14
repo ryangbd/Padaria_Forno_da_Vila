@@ -22,7 +22,7 @@ function Header(){
             </div>
 
             <div className="Header-image">
-                <img src="../src/assets/images/Fachada.webp" alt="Fachada da padaria Forno da Vila" />
+                <img src={fachadaImg} alt="Fachada da padaria Forno da Vila" />
             </div>
         </div>
     )
