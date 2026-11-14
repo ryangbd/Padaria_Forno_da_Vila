@@ -91,7 +91,7 @@
     padding: 0;
 }
 
-.item-carrinho button:hover {
+.item-carrinho .btn-remover-item:hover {
     text-decoration: underline;
 }
 
@@ -111,7 +111,12 @@
 .item-carrinho-acoes { display: flex; flex-direction: column; align-items: flex-end; gap: 0.4rem; }
 .controle-quantidade { display: flex; align-items: center; gap: 0.65rem; }
 .controle-quantidade button { width: 1.8rem; height: 1.8rem; border: 1px solid #d9c7b8; border-radius: 50%; background: #fffdf9; color: #5c4033; font-size: 1rem; cursor: pointer; }
-.controle-quantidade button:hover { background: #f3e9d4; }
+.controle-quantidade button:hover:not(:disabled) { background: #f3e9d4; }
+.controle-quantidade button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    text-decoration: none;
+}
 .controle-quantidade span { min-width: 1ch; text-align: center; font-weight: 700; }
 .item-carrinho .btn-remover-item { color: #a34f3b; font-size: 0.75rem; }
 .modal-carrinho-header h2 { color: #3e2c23; font-size: 1.25rem; margin: 0; }

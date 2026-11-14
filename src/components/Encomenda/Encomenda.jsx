@@ -3,19 +3,28 @@ import "./Encomenda.css"
 import produtos from "../../data/Produtos/Produtos.jsx"
 import ItemCarrinho from "../Carrinho/ItemCarrinho.jsx"
 
-function dataLocalISO() {
-    const hoje = new Date()
-    const ano = hoje.getFullYear()
-    const mes = String(hoje.getMonth() + 1).padStart(2, "0")
-    const dia = String(hoje.getDate()).padStart(2, "0")
+function dataLocalISO(data) {
+    const ano = data.getFullYear()
+    const mes = String(data.getMonth() + 1).padStart(2, "0")
+    const dia = String(data.getDate()).padStart(2, "0")
     return `${ano}-${mes}-${dia}`
 }
 
-function Encomenda({ carrinho, onAdicionar, onAlterarQuantidade, onExcluir }) {
+function limitesRetirada() {
+    const hoje = new Date()
+    const limite = new Date(hoje.getFullYear(), hoje.getMonth() + 3, 1)
+    const ultimoDia = new Date(limite.getFullYear(), limite.getMonth() + 1, 0).getDate()
+    limite.setDate(Math.min(hoje.getDate(), ultimoDia))
+    return { minimo: dataLocalISO(hoje), maximo: dataLocalISO(limite) }
+}
+
+function Encomenda({ carrinho, onAdicionar, onAlterarQuantidade, onExcluir, onFinalizar }) {
     const [form, setForm] = useState({ nome: "", telefone: "", produtoId: "", dataRetirada: "", obs: "" })
     const [quantidade, setQuantidade] = useState(1)
     const [mostrarCarrinho, setMostrarCarrinho] = useState(false)
     const [mensagem, setMensagem] = useState("")
+    const [comprovante, setComprovante] = useState(null)
+    const { minimo, maximo } = limitesRetirada()
 
     const valorTotal = carrinho.reduce((total, item) => total + item.produto.preco * item.quantidade, 0)
     const totalItens = carrinho.reduce((total, item) => total + item.quantidade, 0)
@@ -43,11 +52,39 @@ function Encomenda({ carrinho, onAdicionar, onAlterarQuantidade, onExcluir }) {
 
     function handleSubmit(event) {
         event.preventDefault()
+        const limites = limitesRetirada()
+        if (form.dataRetirada < limites.minimo || form.dataRetirada > limites.maximo) {
+            setMensagem("Escolha uma data de retirada entre hoje e os próximos três meses.")
+            return
+        }
         if (carrinho.length === 0) {
             setMensagem("Adicione pelo menos um produto ao carrinho antes de continuar.")
             return
         }
-        setMensagem("Pedido revisado. Esta página ainda não envia a encomenda para a padaria.")
+        const pedido = onFinalizar({
+            cliente: { nome: form.nome.trim(), telefone: form.telefone.trim() },
+            dataRetirada: form.dataRetirada,
+            observacoes: form.obs.trim(),
+            itens: carrinho.map(({ produto, quantidade }) => ({
+                produtoId: produto.id,
+                nome: produto.nome,
+                precoUnitario: produto.preco,
+                quantidade,
+                subtotal: Number((produto.preco * quantidade).toFixed(2)),
+            })),
+            total: Number(valorTotal.toFixed(2)),
+            simulado: true,
+        })
+
+        if (pedido.erro) {
+            setMensagem(pedido.erro)
+            return
+        }
+
+        setComprovante(pedido)
+        setMensagem("")
+        setMostrarCarrinho(false)
+        setForm({ nome: "", telefone: "", produtoId: "", dataRetirada: "", obs: "" })
     }
 
     return (
@@ -80,13 +117,14 @@ function Encomenda({ carrinho, onAdicionar, onAlterarQuantidade, onExcluir }) {
                             </div>
 
                             <label htmlFor="date">Data de retirada</label>
-                            <input type="date" id="date" name="dataRetirada" onChange={handleChange} value={form.dataRetirada} min={dataLocalISO()} required />
+                            <input type="date" id="date" name="dataRetirada" onChange={handleChange} value={form.dataRetirada} min={minimo} max={maximo} aria-describedby="prazo-retirada" required />
+                            <small id="prazo-retirada">Escolha uma data entre hoje e os próximos três meses.</small>
 
                             <label htmlFor="obs">Observações</label>
                             <textarea id="obs" name="obs" value={form.obs} onChange={handleChange} rows="4" placeholder="Alguma orientação para o pedido?" />
 
                             {mensagem && <p className="mensagem-pedido" role="status">{mensagem}</p>}
-                            <button type="submit">Revisar pedido</button>
+                            <button type="submit">Finalizar pedido simulado</button>
                         </form>
                     </div>
 
@@ -120,6 +158,39 @@ function Encomenda({ carrinho, onAdicionar, onAlterarQuantidade, onExcluir }) {
                         <ItemCarrinho carrinho={carrinho} onAlterarQuantidade={onAlterarQuantidade} onExcluir={onExcluir} />
                         {carrinho.length > 0 && <div className="rodape-carrinho"><span>Total</span><strong>R$ {valorTotalFormatado}</strong></div>}
                         <button className="btn-continuar-comprando" type="button" onClick={() => setMostrarCarrinho(false)}>Continuar escolhendo</button>
+                    </section>
+                </div>
+            )}
+
+            {comprovante && (
+                <div className="overlay-carrinho">
+                    <section className="modal-carrinho comprovante" role="dialog" aria-modal="true" aria-labelledby="titulo-comprovante">
+                        <div className="comprovante-cabecalho">
+                            <span className="comprovante-check" aria-hidden="true">✓</span>
+                            <p>PEDIDO SIMULADO</p>
+                            <h2 id="titulo-comprovante">Encomenda finalizada</h2>
+                            <span>O pedido foi salvo neste navegador.</span>
+                        </div>
+                        <div className="comprovante-numero">
+                            <span>Número do pedido</span>
+                            <strong>{comprovante.id}</strong>
+                        </div>
+                        <div className="comprovante-dados">
+                            <div><span>Cliente</span><strong>{comprovante.cliente.nome}</strong></div>
+                            <div><span>Telefone</span><strong>{comprovante.cliente.telefone}</strong></div>
+                            <div><span>Retirada</span><strong>{new Date(`${comprovante.dataRetirada}T00:00:00`).toLocaleDateString('pt-BR')}</strong></div>
+                        </div>
+                        <div className="comprovante-itens">
+                            {comprovante.itens.map(item => (
+                                <div key={item.produtoId}>
+                                    <span>{item.quantidade} × {item.nome}</span>
+                                    <strong>R$ {item.subtotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong>
+                                </div>
+                            ))}
+                        </div>
+                        {comprovante.observacoes && <p className="comprovante-obs"><strong>Observações:</strong> {comprovante.observacoes}</p>}
+                        <div className="comprovante-total"><span>Total</span><strong>R$ {comprovante.total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</strong></div>
+                        <button className="btn-continuar-comprando" type="button" onClick={() => setComprovante(null)}>Fechar comprovante</button>
                     </section>
                 </div>
             )}

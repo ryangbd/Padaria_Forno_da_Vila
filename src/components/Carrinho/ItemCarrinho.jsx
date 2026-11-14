@@ -16,7 +16,7 @@ function ItemCarrinho({ carrinho, onAlterarQuantidade, onExcluir }) {
                     </div>
                     <div className="item-carrinho-acoes">
                         <div className="controle-quantidade" aria-label={`Quantidade de ${produto.nome}`}>
-                            <button type="button" onClick={() => onAlterarQuantidade(produto.id, quantidade - 1)} aria-label={`Diminuir ${produto.nome}`}>−</button>
+                            <button type="button" disabled={quantidade <= 1} onClick={() => onAlterarQuantidade(produto.id, quantidade - 1)} aria-label={`Diminuir ${produto.nome}`}>−</button>
                             <span>{quantidade}</span>
                             <button type="button" onClick={() => onAlterarQuantidade(produto.id, quantidade + 1)} aria-label={`Aumentar ${produto.nome}`}>+</button>
                         </div>
